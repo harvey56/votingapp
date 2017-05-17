@@ -1,5 +1,5 @@
-import {Bar} from 'react-chartjs-2';
 import React from 'react';
+import { Bar } from 'react-chartjs-2';
 import { connect } from 'react-redux';
 import { getPollData } from '../../actions/createpoll';
 
@@ -14,7 +14,6 @@ class MyChart extends React.Component{
 	componentWillMount(){
 
 		let username = window.location.pathname.split("/")[2];
-		//let polltitle = this.props.pollTitle;
 		let polltitle = window.location.pathname.split("/")[3];
 
 	  	this.props.getPollData(username, polltitle);
@@ -25,7 +24,9 @@ class MyChart extends React.Component{
 		let polltitle = this.props.polltitle;  		
   		let pollData = this.props.pollData || [];
 	  	let xDataTemp = [];
-	  	let yDataTemp = [];  		
+	  	let yDataTemp = [];  
+
+	  	let votingUrl = "poll/" + username + "/" + polltitle;		
 
   		const xData = (
 			pollData.forEach( (el) => {
@@ -81,6 +82,10 @@ class MyChart extends React.Component{
 	          height={50}
 	          options={options}
 	        />
+	    </div>
+	    <div className = "cold-md-3">
+	    	</br></br>
+	    	<h4><Link to = {votingUrl}>I want to vote now !</Link></h4>
 	    </div>
       </div>
     )
