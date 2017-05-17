@@ -1,0 +1,10 @@
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const UNAUTH_USER = 'UNAUTH_USER';
+export const CREATE_NEW_POLL = 'CREATE_NEW_POLL'; 
+export const RETRIEVE_POLLS = 'RETRIEVE_POLLS'; 
+export const RETRIEVE_POLL_TITLE = 'RETRIEVE_POLL_TITLE';
+export const UPDATE_POLL = 'UPDATE_POLL';
+export const DELETE_POLL = 'DELETE_POLL';
