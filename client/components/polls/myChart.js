@@ -3,7 +3,6 @@ import { Bar } from 'react-chartjs-2';
 import { connect } from 'react-redux';
 import { getPollData } from '../../actions/createpoll';
 
-
 class MyChart extends React.Component{
 
 	constructor(props){
@@ -83,9 +82,9 @@ class MyChart extends React.Component{
 	          options={options}
 	        />
 	    </div>
-	    <div className = "cold-md-3">
-	    	</br></br>
-	    	<h4><Link to = {votingUrl}>I want to vote now !</Link></h4>
+	    <div className = "col-md-3">
+	    	<br /><br />
+	    	<h4><a href = {votingUrl}>I want to vote now !</a></h4>
 	    </div>
       </div>
     )
