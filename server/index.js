@@ -28,7 +28,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-console.log(process.env.NODE_ENV);
 
 app.use('/authuser', users);
 app.use('/api', poll);
