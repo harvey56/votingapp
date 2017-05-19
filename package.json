@@ -9,7 +9,7 @@
   "scripts": {
     "server": "NODE_ENV=development nodemon --watch server --exec babel-node -- server/index.js",
     "build": "NODE_ENV=production webpack --config webpack.config.js",
-    "start": "./node_modules/.bin/babel-node server/index.js",
+    "start": "babel-node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -64,5 +64,8 @@
     "webpack": "^2.5.1",
     "webpack-dev-middleware": "^1.10.2",
     "webpack-hot-middleware": "^2.18.0"
+  },
+  "babel": {
+    "presets": ["es2015", "react"]
   }
 }
