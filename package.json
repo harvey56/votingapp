@@ -7,9 +7,11 @@
     "node": "6.10.2"
   },
   "scripts": {
+    "clean": "rm -rf build && mkdir build",
+    "build-server": "babel -d ./build ./server -s",
     "dev": "NODE_ENV=development nodemon --watch server --exec babel-node -- server/index.js",
-    "build": "NODE_ENV=production webpack --config webpack.config.js",
-    "start": "node server/index.js --exec babel-node --presets es2015, stage-2",
+    "build": "NODE_ENV=production npm run clean && npm run build-server",
+    "start": "node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
