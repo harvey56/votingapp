@@ -14,6 +14,7 @@ let app = express();
 var port = +process.env.PORT || 8000;
 var NODE_ENV = process.env.NODE_ENV || 'production';
 console.log("NODE_ENV: ", NODE_ENV);
+console.log("port: ", port);
 
 app.use(bodyParser.json());
 
