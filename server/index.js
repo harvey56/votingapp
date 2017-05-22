@@ -28,6 +28,7 @@ app.use('/authuser', users);
 app.use('/api', poll);
 
 if (NODE_ENV === 'development'){
+	console.log("NODE_ENV: ", NODE_ENV);
 	devConfig(app);
 }
 else{
