@@ -13,7 +13,7 @@
     "cp-public": "cp -R ./public dist",
     "prebuild": "npm-run-all clean build-server create-html cp-public",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "start": "node ./dist/index.js",
+    "start": "node ./dist/server/index.js",
     "dev": "NODE_ENV=development nodemon --watch server --exec babel-node -- server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
