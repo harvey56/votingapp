@@ -39,22 +39,23 @@ app.use(_bodyParser2.default.json());
 
 // enable CORS
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
 });
 
 app.use('/authuser', _userAuth2.default);
 app.use('/api', _poll2.default);
 
 if (NODE_ENV === 'development') {
-  (0, _dev2.default)(app);
+	console.log("NODE_ENV: ", NODE_ENV);
+	(0, _dev2.default)(app);
 } else {
-  (0, _prod2.default)(app);
+	(0, _prod2.default)(app);
 }
 
 app.get("/*", function (req, res) {
-  res.sendFile(_path2.default.join(__dirname, "./index.html"));
+	res.sendFile(_path2.default.join(__dirname, "./index.html"));
 });
 
 app.listen(port);
