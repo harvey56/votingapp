@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Bitter');
+
+h2{
+	font-weight: bold;
+}
+
+.mainpageheader{
+	background-color: #5bc0de;
+	color: #ffffff;
+	font-family: 'Bitter', serif;
+	text-align: center;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+}
+
+.maintitle{
+	font-size: 58px;
+	font-weight: bold;
+};
+
+.second-title{
+	font-size: 35px;
+};
+
+.btn-margin{
+	margin-right: 10px;
+}
+
+
+ul {
+  list-style-type: none;
+}

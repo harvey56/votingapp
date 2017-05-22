@@ -1,14 +1,14 @@
-import path from 'path';
-import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+const path = require('path');
+const webpack = require ('webpack');
+const ExtractTextPlugin = require ('extract-text-webpack-plugin');
 
 let plugins;
 let entry;
 
 	if (process.env.NODE_ENV === 'production'){
 		plugins = [
-		    new ExtractTextPlugin('bundle.css', { allChunks: true }),
-		    new webpack.optimize.OccurenceOrderPlugin(),
+		    new ExtractTextPlugin({ filename: 'bundle.css', disable: false, allChunks: true }),
+		    //new webpack.optimize.OccurenceOrderPlugin(),
 		    new webpack.DefinePlugin({
 		      'process.env.NODE_ENV': JSON.stringify('production'),
 		    }),
@@ -38,7 +38,7 @@ module.exports = {
 	entry,
 	output: {
 		filename: "bundle.js",
-		path: "/",
+		path: path.join(__dirname, '/dist/client'),
 		publicPath: "/"
 	},
 	module: {
