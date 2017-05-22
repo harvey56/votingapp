@@ -24,6 +24,7 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(express.static('dist/client'));
 
 app.use('/authuser', users);
 app.use('/api', poll);
@@ -35,8 +36,10 @@ else{
 	prodConfig(app);
 }
 
-app.get("/*", (req, res) => {
-	res.sendFile(path.join(__dirname, "./index.html"));
-});
+//app.get("/*", (req, res) => {
+//	res.sendFile(path.join(__dirname, "./index.html"));
+//});
+
+app.use(express.static(path.join(__dirname, '../dist/client/index.html')));
 
 app.listen(port);

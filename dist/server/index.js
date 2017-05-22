@@ -45,6 +45,8 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use(_express2.default.static('dist/client'));
+
 app.use('/authuser', _userAuth2.default);
 app.use('/api', _poll2.default);
 
@@ -54,8 +56,10 @@ if (NODE_ENV === 'development') {
   (0, _prod2.default)(app);
 }
 
-app.get("/*", function (req, res) {
-  res.sendFile(_path2.default.join(__dirname, "./index.html"));
-});
+//app.get("/*", (req, res) => {
+//	res.sendFile(path.join(__dirname, "./index.html"));
+//});
+
+app.use(_express2.default.static(_path2.default.join(__dirname, '../dist/client/index.html')));
 
 app.listen(port);

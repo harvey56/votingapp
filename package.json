@@ -2,14 +2,14 @@
   "name": "react-redux-mongo-voting-app",
   "version": "1.0.0",
   "description": "Voting app made from scratch with React, Redux, Express, MongoDB",
-  "main": "dist/index.js",
+  "main": "dist/server/index.js",
   "engines": {
     "node": "6.10.2"
   },
   "scripts": {
-    "clean": "rm -rf dist && mkdir dist/",
-    "build-server": "babel ./server -d ./dist/server/",
-    "create-html": "cp ./server/index.html dist/server",
+    "clean": "rm -rf dist && mkdir -p dist/client/ && mkdir -p dist/server/",
+    "build-server": "babel ./server -d dist/server",
+    "create-html": "cp ./server/index.html ./dist/client/",
     "cp-public": "cp -R ./public dist",
     "prebuild": "npm-run-all clean build-server create-html cp-public",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
