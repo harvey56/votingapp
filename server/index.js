@@ -1,23 +1,18 @@
 import express from 'express';
 import path from 'path';
 
-import webpack from 'webpack';
-import webpackMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig from '../webpack.config.js';
-
 import users from './routes/userAuth';
 import poll from './routes/poll';
 import bodyParser from 'body-parser';
-import compression from 'compression';
+
+import devConfig from './config/dev';
+import prodConfig from './config/prod';
 
 
 let app = express();
 
 var port = process.env.port || 8080;
 var NODE_ENV = process.env.NODE_ENV || 'production';
-
-const compiler = webpack(webpackConfig);
 
 app.use(bodyParser.json());
 
@@ -33,17 +28,10 @@ app.use('/authuser', users);
 app.use('/api', poll);
 
 if (NODE_ENV === 'development'){
-
-	app.use(webpackMiddleware(compiler, {
-		hot: true,
-		publicPath: webpackConfig.output.publicPath,
-		noinfo: true
-	}));
-
-	app.use(webpackHotMiddleware(compiler));
+	devConfig(app);
 }
 else{
-	app.use(compression());
+	prodConfig(app);
 }
 
 app.get("/*", (req, res) => {
