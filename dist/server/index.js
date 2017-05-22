@@ -20,6 +20,10 @@ var _bodyParser = require('body-parser');
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
+var _dev = require('./config/dev');
+
+var _dev2 = _interopRequireDefault(_dev);
+
 var _prod = require('./config/prod');
 
 var _prod2 = _interopRequireDefault(_prod);
@@ -28,10 +32,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var app = (0, _express2.default)();
 
-//import devConfig from './config/dev';
-
-
-var port = process.env.port || 8080;
+var port = +process.env.port || 8080;
 var NODE_ENV = process.env.NODE_ENV || 'production';
 console.log("NODE_ENV: ", NODE_ENV);
 
@@ -47,12 +48,11 @@ app.use(function (req, res, next) {
 app.use('/authuser', _userAuth2.default);
 app.use('/api', _poll2.default);
 
-//if (NODE_ENV === 'development'){	
-//	devConfig(app);
-//}
-//else{
-(0, _prod2.default)(app);
-//}
+if (NODE_ENV === 'development') {
+  (0, _dev2.default)(app);
+} else {
+  (0, _prod2.default)(app);
+}
 
 app.get("/*", function (req, res) {
   res.sendFile(_path2.default.join(__dirname, "./index.html"));
