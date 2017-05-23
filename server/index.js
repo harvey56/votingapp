@@ -11,7 +11,7 @@ import prodConfig from './config/prod';
 
 let app = express();
 
-var port = +process.env.PORT || 8000;
+var PORT = +process.env.PORT || 8000;
 var NODE_ENV = process.env.NODE_ENV || 'production';
 console.log("NODE_ENV: ", NODE_ENV);
 console.log("port: ", port);
@@ -43,7 +43,7 @@ else{
 
 app.use(express.static(path.join(__dirname, '../dist/client/index.html')));
 
-app.listen(port, function(err){
+app.listen(PORT, function(err){
 	if (err) throw err;
-	console.log(`Server is Listening on port ${port} in ${NODE_ENV} mode`);
+	console.log(`Server is Listening on port ${PORT} in ${NODE_ENV} mode`);
 });
