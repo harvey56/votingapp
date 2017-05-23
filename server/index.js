@@ -11,7 +11,7 @@ import prodConfig from './config/prod';
 
 let app = express();
 
-var PORT = +process.env.PORT || 8000;
+var PORT = process.env.PORT || 8000;
 var NODE_ENV = process.env.NODE_ENV || 'production';
 
 app.use(bodyParser.json());
