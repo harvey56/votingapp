@@ -22,11 +22,14 @@ var _assert2 = _interopRequireDefault(_assert);
 
 var _mongodb = require('mongodb');
 
+var _dotenv = require('dotenv');
+
+var _dotenv2 = _interopRequireDefault(_dotenv);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//path to DB
-var urlDb = "mongodb://harvey:votingapp@ds127260.mlab.com:27260/votingapp";
-
+_dotenv2.default.config();
+var urlDb = process.env.MONGOLAB_URI;
 var db;
 
 // Create the database connection

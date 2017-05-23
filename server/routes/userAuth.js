@@ -3,10 +3,10 @@ import validateSignupInput from '../validation/signup';
 import validateLoginInput from '../validation/login';
 import assert from 'assert';
 import {MongoClient} from 'mongodb';
+import dotenv from 'dotenv';
 
-//path to DB
-var urlDb = "mongodb://harvey:votingapp@ds127260.mlab.com:27260/votingapp";
-
+dotenv.config();
+var urlDb = process.env.MONGOLAB_URI;
 var db;
 
 // Create the database connection
