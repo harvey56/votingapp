@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Voting app made from scratch with React, Redux, Express, MongoDB",
   "main": "dist/server/index.js",
-  "engines": {
-    "node": "6.10.2"
-  },
   "scripts": {
     "clean": "rm -rf dist && mkdir -p dist/client/ && mkdir -p dist/server/",
     "build-server": "babel ./server -d dist/server",
