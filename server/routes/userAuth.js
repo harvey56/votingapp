@@ -21,18 +21,18 @@ let router = express.Router();
 // sign up user and record user profile to database
 
 router.post('/signup', (req, res) => {
-	console.log("req.body: ", req.body);
+	let userProfile = req.body;
 	db.collection('votingapprecords').find({ "user.username": req.body.username }).toArray()
 		.then( 
 			(data) => {
 				if(data.length === 0){
 					req.body.errors = {};
-					return res.status(200).json(req.body);
+					return res.status(200).json(userProfile);
 				}				
 
 				else{
 					req.body.errors = "This user is already registered";			
-					return res.status(401).json(req.body);
+					return res.status(401).json(userProfile);
 				}
 
 			}

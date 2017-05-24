@@ -71,7 +71,6 @@ app.get('/poll/viewallpolls', (req, res) => {
 // handle poll vote
 
 app.get('/poll/:userId/:polltitle', (req, res) => {
-	console.log("req.params: ", req.params);
 
 	let query = { "user.username": req.params.userId, "polltitle": req.params.polltitle };
 

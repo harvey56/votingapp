@@ -4,6 +4,7 @@ const ExtractTextPlugin = require ('extract-text-webpack-plugin');
 
 let plugins;
 let entry;
+let devServer;
 
 	if (process.env.NODE_ENV === 'production'){
 		plugins = [
@@ -14,10 +15,13 @@ let entry;
 		    }),
 		    new webpack.optimize.DedupePlugin(),
 		    new webpack.optimize.UglifyJsPlugin(),
-		],
+		];
 		entry = [
 			path.join(__dirname, '/client/index.js')
-		]
+		];
+		devServer = {
+    		contentBase: './dist/client',
+		}
 	}
 
 	else {
@@ -25,17 +29,22 @@ let entry;
 			new webpack.NoEmitOnErrorsPlugin(),
 			//new webpack.optimize.OccurenceOrderPlugin(),
 			new webpack.HotModuleReplacementPlugin()
-		],
+		];
 		entry = [
 			'webpack-hot-middleware/client?reload=true',
 			path.join(__dirname, '/client/index.js')
-		]
+		];
+		devServer = {
+    		contentBase: './client',
+		}
 	}
 
 module.exports = {
 
 	plugins,
 	entry,
+	devServer,
+	target: 'web',
 	output: {
 		filename: "bundle.js",
 		path: path.join(__dirname, '/dist/client'),

@@ -34,19 +34,17 @@ var app = (0, _express2.default)();
 
 var PORT = +process.env.PORT || 8000;
 var NODE_ENV = process.env.NODE_ENV || 'production';
-console.log("NODE_ENV: ", NODE_ENV);
-console.log("port: ", PORT);
 
 app.use(_bodyParser2.default.json());
 
 // enable CORS
-app.use(function (req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	next();
-});
+//app.use(function(req, res, next) {
+//  res.header("Access-Control-Allow-Origin", "*");
+//  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//  next();
+//});
 
-app.use(_express2.default.static('dist/client'));
+//app.use(express.static('dist/client'));
 
 app.use('/authuser', _userAuth2.default);
 app.use('/api', _poll2.default);
@@ -61,7 +59,12 @@ if (NODE_ENV === 'development') {
 //	res.sendFile(path.join(__dirname, "./index.html"));
 //});
 
-app.use(_express2.default.static(_path2.default.join(__dirname, '../dist/client/index.html')));
+app.use(_express2.default.static(_path2.default.join(__dirname, '../client/')));
+
+//app.get('../public/stylesheets/main.css', function(req, res){
+//	res.send('../public/stylesheets/main.css');
+//	res.end();
+//});
 
 app.listen(PORT, function (err) {
 	if (err) throw err;
