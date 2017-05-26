@@ -6,6 +6,7 @@ import routes from './routes';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers/rootReducer'; 
 import { AUTH_SUCCESS } from './actions/types';
 //import '../public/stylesheets/main.css';
@@ -13,9 +14,7 @@ import { AUTH_SUCCESS } from './actions/types';
 const store = createStore(
 	rootReducer,
 	compose(
-		applyMiddleware(thunk),
-		// to use redux dev tools in Chrome
-		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+		applyMiddleware(thunk)
 	)
 );
 
