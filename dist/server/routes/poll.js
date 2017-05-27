@@ -39,7 +39,7 @@ var app = _express2.default.Router();
 
 // submit a new poll
 
-app.post('/poll/newpoll', function (req, res) {
+app.post('/api/poll/newpoll', function (req, res) {
 
 	var obj = req.body;
 
@@ -53,7 +53,7 @@ app.post('/poll/newpoll', function (req, res) {
 
 // get list of all polls submitted by user
 
-app.get('/poll/mypolls/:userId', function (req, res) {
+app.get('/api/poll/mypolls/:userId', function (req, res) {
 	var query = { 'user.username': req.params.userId };
 
 	db.collection('votingapprecords').find(query).toArray(function (err, data) {
@@ -65,7 +65,7 @@ app.get('/poll/mypolls/:userId', function (req, res) {
 
 // retrieve all polls
 
-app.get('/poll/viewallpolls', function (req, res) {
+app.get('https://hidden-hollows-88799.herokuapp.com/api/poll/viewallpolls', function (req, res) {
 
 	db.collection('votingapprecords').find({}).toArray(function (err, data) {
 		if (err) throw err;else {
@@ -76,7 +76,7 @@ app.get('/poll/viewallpolls', function (req, res) {
 
 // handle poll vote
 
-app.get('/poll/:userId/:polltitle', function (req, res) {
+app.get('/api/poll/:userId/:polltitle', function (req, res) {
 
 	var query = { "user.username": req.params.userId, "polltitle": req.params.polltitle };
 
@@ -90,7 +90,7 @@ app.get('/poll/:userId/:polltitle', function (req, res) {
 
 // update DB with new vote
 
-app.post('/poll/:userId/:polltitle', function (req, res) {
+app.post('/api/poll/:userId/:polltitle', function (req, res) {
 	var pollData = req.body;
 
 	var query = { 'user.username': req.params.userId, 'polltitle': req.params.polltitle };
@@ -103,7 +103,7 @@ app.post('/poll/:userId/:polltitle', function (req, res) {
 
 // delete a poll submitted by user
 
-app.post('/poll/deletePoll/:userId/:polltitle', function (req, res) {
+app.post('/api/poll/deletePoll/:userId/:polltitle', function (req, res) {
 	var query = { 'user.username': req.params.userId, 'polltitle': req.params.polltitle };
 
 	db.collection('votingapprecords').deleteOne(query).then(function () {

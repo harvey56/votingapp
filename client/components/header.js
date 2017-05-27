@@ -16,17 +16,17 @@ class Header extends React.Component{
 
 		const guestHeader = (
 			<ul className = "nav navbar-nav navbar-right">
-				<li><a href = "/signup">Sign up</a></li>
-				<li><a href = "/login">Login</a></li>
+				<li><Link to = "/signup">Sign up</Link></li>
+				<li><Link to = "/login">Login</Link></li>
 			</ul>			
 		)
 
 		const loggedUserHeader = (
 			<ul className = "nav navbar-nav navbar-right">
-				<li><a href = "/viewallpolls">View all polls</a></li>
-				<li><a href =  {myPollsLink}>My polls</a></li>
-				<li><a href = "/addpoll">You are logged in as { this.userLogin ? this.userLogin.username : user.username }</a></li>
-				<li><a href = "/signout">Sign out</a></li>
+				<li><Link to = "/viewallpolls">View all polls</Link></li>
+				<li><Link to =  {myPollsLink}>My polls</Link></li>
+				<li><Link to = "/addpoll">You are logged in as { this.userLogin ? this.userLogin.username : user.username }</Link></li>
+				<li><Link to = "/signout">Sign out</Link></li>
 			</ul>
 		)
 

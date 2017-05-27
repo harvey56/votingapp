@@ -22,7 +22,7 @@ var app = express.Router();
 
 // submit a new poll
 
-app.post('/poll/newpoll', (req, res) => {
+app.post('/api/poll/newpoll', (req, res) => {
 
 	let obj = req.body;
 
@@ -42,7 +42,7 @@ app.post('/poll/newpoll', (req, res) => {
 
 // get list of all polls submitted by user
 
-app.get('/poll/mypolls/:userId', (req, res) => {
+app.get('/api/poll/mypolls/:userId', (req, res) => {
 	let query = {'user.username': req.params.userId};
 
 	db.collection('votingapprecords').find(query).toArray( (err, data) => {
@@ -57,7 +57,7 @@ app.get('/poll/mypolls/:userId', (req, res) => {
 
 // retrieve all polls
 
-app.get('/poll/viewallpolls', (req, res) => {
+app.get('/api/poll/viewallpolls', (req, res) => {
 
 	db.collection('votingapprecords').find({}).toArray( (err, data) => {
 		if (err) throw err;
@@ -70,7 +70,7 @@ app.get('/poll/viewallpolls', (req, res) => {
 
 // handle poll vote
 
-app.get('/poll/:userId/:polltitle', (req, res) => {
+app.get('/api/poll/:userId/:polltitle', (req, res) => {
 
 	let query = { "user.username": req.params.userId, "polltitle": req.params.polltitle };
 
@@ -86,7 +86,7 @@ app.get('/poll/:userId/:polltitle', (req, res) => {
 
 // update DB with new vote
 
-app.post('/poll/:userId/:polltitle', (req, res) => {
+app.post('/api/poll/:userId/:polltitle', (req, res) => {
 	let pollData = req.body;
 
 	let query = { 'user.username': req.params.userId, 'polltitle': req.params.polltitle };
@@ -99,7 +99,7 @@ app.post('/poll/:userId/:polltitle', (req, res) => {
 
 // delete a poll submitted by user
 
-app.post('/poll/deletePoll/:userId/:polltitle', (req, res) => {
+app.post('/api/poll/deletePoll/:userId/:polltitle', (req, res) => {
 	let query = { 'user.username': req.params.userId, 'polltitle': req.params.polltitle };
 
 	db.collection('votingapprecords').deleteOne(query)

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { API_URL } from '../config/url-config';
 import { SIGNUP_SUCCESS, SIGNUP_FAILURE, AUTH_ERROR, AUTH_SUCCESS, UNAUTH_USER } from './types';
 
 // sign up a user

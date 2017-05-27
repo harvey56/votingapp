@@ -16,11 +16,11 @@ MongoClient.connect(urlDb, { poolSize: 10 }, function(err, database) {
 });
 
 
-let router = express.Router();
+let router = module.exports = express.Router();
 
 // sign up user and record user profile to database
 
-router.post('/signup', (req, res) => {
+router.post('/authuser/signup', (req, res) => {
 	let userProfile = req.body;
 	db.collection('votingapprecords').find({ "user.username": req.body.username }).toArray()
 		.then( 
@@ -45,7 +45,7 @@ router.post('/signup', (req, res) => {
 
 // fetch user data upon logging in
 
-router.post('/login', (req, res) => {
+router.post('/authuser/login', (req, res) => {
 
 	let query = { "user.username" : req.body.username };
 	let password = req.body.password;
@@ -66,4 +66,3 @@ router.post('/login', (req, res) => {
 	})
 })
 
-export default router;

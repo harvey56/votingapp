@@ -1,9 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
 var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
@@ -38,11 +34,11 @@ _mongodb.MongoClient.connect(urlDb, { poolSize: 10 }, function (err, database) {
 	db = database;
 });
 
-var router = _express2.default.Router();
+var router = module.exports = _express2.default.Router();
 
 // sign up user and record user profile to database
 
-router.post('/signup', function (req, res) {
+router.post('/authuser/signup', function (req, res) {
 	var userProfile = req.body;
 	db.collection('votingapprecords').find({ "user.username": req.body.username }).toArray().then(function (data) {
 		if (data.length === 0) {
@@ -59,7 +55,7 @@ router.post('/signup', function (req, res) {
 
 // fetch user data upon logging in
 
-router.post('/login', function (req, res) {
+router.post('/authuser/login', function (req, res) {
 
 	var query = { "user.username": req.body.username };
 	var password = req.body.password;
@@ -74,5 +70,3 @@ router.post('/login', function (req, res) {
 		return res.status(401).json({ errors: "This username does not exist in the database" });
 	});
 });
-
-exports.default = router;

@@ -5,6 +5,7 @@ const ExtractTextPlugin = require ('extract-text-webpack-plugin');
 let plugins;
 let entry;
 let devServer;
+let devtool;
 
 	if (process.env.NODE_ENV === 'production'){
 		plugins = [
@@ -13,7 +14,7 @@ let devServer;
 		    new webpack.DefinePlugin({
 		      'process.env.NODE_ENV': JSON.stringify('production'),
 		    }),
-		    new webpack.optimize.DedupePlugin(),
+		    //new webpack.optimize.DedupePlugin(),
 		    new webpack.optimize.UglifyJsPlugin(),
 		];
 		entry = [
@@ -21,7 +22,8 @@ let devServer;
 		];
 		devServer = {
     		contentBase: './dist/client',
-		}
+		};
+		devtool = 'source-map';
 	}
 
 	else {
@@ -36,7 +38,8 @@ let devServer;
 		];
 		devServer = {
     		contentBase: './client',
-		}
+		},
+		devtool = 'cheap-module-eval-source-map';
 	}
 
 module.exports = {
@@ -44,6 +47,7 @@ module.exports = {
 	plugins,
 	entry,
 	devServer,
+	devtool,
 	target: 'web',
 	output: {
 		filename: "bundle.js",
@@ -80,47 +84,3 @@ module.exports = {
 		extensions: ['.js']
 	}
 }
-
-/*import path from 'path';
-import webpack from 'webpack';
-
-export default {
-	entry: [
-		'webpack-hot-middleware/client?reload=true',
-		path.join(__dirname, '/client/index.js')
-	],
-	output: {
-		filename: "bundle.js",
-		path: "/",
-		publicPath: "/"
-	},
-	module: {
-		loaders:[
-			{
-				test: /\.js$/,		
-				include: [
-					path.join(__dirname, "client"),
-					path.join(__dirname, "server/validation")
-				],
-				loaders: ['babel-loader']
-			},
-			{
-                test: /\.css$/,
-                loader: 'style-loader!css-loader!sass-loader'
-			},
-			{
-				test: /\.(png|jpg)$/, 
-				loader: 'url-loader?'
-			}
-		]
-	},
-	plugins: [
-		new webpack.NoEmitOnErrorsPlugin(),
-		//new webpack.optimize.OccurenceOrderPlugin(),
-		new webpack.HotModuleReplacementPlugin()
-	],
-
-	resolve:{
-		extensions: ['.js']
-	}
-}*/

@@ -13,10 +13,10 @@ import MyChart from './components/polls/myChart';
 import ViewAllPolls from './components/polls/viewallpolls';
 
 export default(
-	<Route path = "/" component = {App} >
+	<Route path = "/" name = "home" component = {App} >
 		<IndexRoute component = {Main} />
-		<Route path = "signup" component = {Signuppage} />
-		<Route path = "login" component = {Loginpage} />
+		<Route path = "signup" name = 'signup' component = {Signuppage} />
+		<Route path = 'login' component = {Loginpage} />
 		<Route path = "signout" component = {Signout} />
 		<Route path = "addpoll" component = {Dashboard} />
 		<Route path = "poll/:userId/:polltitle" component = {Vote} />
