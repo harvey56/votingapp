@@ -43,6 +43,9 @@ var _compression2 = _interopRequireDefault(_compression);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
+//import validationLogin from './validation/login';
+//import validationSignup from './validation/signup';
+
 app.use((0, _compression2.default)());
 
 var PORT = +process.env.PORT || 8000;
@@ -52,11 +55,12 @@ app.use(_bodyParser2.default.urlencoded({ extended: true }));
 app.use(_bodyParser2.default.json());
 
 // enable CORS
-app.use(function (req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	next();
-});
+//app.use(function(req, res, next) {
+//  res.header("Access-Control-Allow-Origin", "*");
+//  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//  next();
+//});
+
 
 //app.use(helmet.contentSecurityPolicy({
 //	directives: {
@@ -65,10 +69,10 @@ app.use(function (req, res, next) {
 //	}
 //}));
 
-//app.use('/authuser', users);
-//app.use('/api', poll);
 app.use(_userAuth2.default);
 app.use(_poll2.default);
+//app.use(validationLogin);
+//app.use(validationSignup);
 
 if (NODE_ENV === 'development') {
 	(0, _dev2.default)(app);
@@ -77,23 +81,19 @@ if (NODE_ENV === 'development') {
 }
 
 if (NODE_ENV === 'production') {
-	app.get("/*", function (req, res) {
+	app.get("/", function (req, res) {
 		res.sendFile(_path2.default.join(__dirname, "../client/index.html"));
 	});
 
 	app.use(_express2.default.static(_path2.default.join(__dirname, '../client')));
+	//app.use(express.static(path.join(__dirname, './')));
 } else {
-	app.get("/*", function (req, res) {
+	app.get("/", function (req, res) {
 		res.sendFile(_path2.default.join(__dirname, "/index.html"));
 	});
 
 	app.use(_express2.default.static(_path2.default.join(__dirname, '../client')));
 }
-
-console.log("dirname: ", _path2.default.join(__dirname, '../client'));
-//app.use(fallback(path.join(__dirname, '../dist/client/index.html')));
-//app.use(express.static(__dirname + '../dist/client'));
-//app.use(express.static(path.join(__dirname, '../client/')));
 
 app.listen(PORT, function (err) {
 	if (err) throw err;

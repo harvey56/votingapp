@@ -3,6 +3,8 @@ import path from 'path';
 
 import users from './routes/userAuth';
 import poll from './routes/poll';
+//import validationLogin from './validation/login';
+//import validationSignup from './validation/signup';
 import bodyParser from 'body-parser';
 
 import devConfig from './config/dev';
@@ -20,11 +22,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // enable CORS
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+//app.use(function(req, res, next) {
+//  res.header("Access-Control-Allow-Origin", "*");
+//  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//  next();
+//});
 
 
 //app.use(helmet.contentSecurityPolicy({
@@ -36,6 +38,8 @@ app.use(function(req, res, next) {
 
 app.use(users);
 app.use(poll);
+//app.use(validationLogin);
+//app.use(validationSignup);
 
 if (NODE_ENV === 'development'){	
 	devConfig(app);
@@ -45,14 +49,15 @@ else{
 }
 
 if (NODE_ENV === 'production'){
-	app.get("/*", (req, res) => {
+	app.get("/", (req, res) => {
 		res.sendFile(path.join(__dirname, "../client/index.html"));
 	});
 
 	app.use(express.static(path.join(__dirname, '../client')));
+	//app.use(express.static(path.join(__dirname, './')));
 }
 else{
-	app.get("/*", (req, res) => {
+	app.get("/", (req, res) => {
 		res.sendFile(path.join(__dirname, "/index.html"));
 	});
 

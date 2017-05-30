@@ -19,7 +19,6 @@ MongoClient.connect(urlDb, { poolSize: 10 }, function(err, database) {
 
 var app = express.Router();
 
-
 // submit a new poll
 
 app.post('/api/poll/newpoll', (req, res) => {

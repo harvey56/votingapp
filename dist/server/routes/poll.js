@@ -65,7 +65,7 @@ app.get('/api/poll/mypolls/:userId', function (req, res) {
 
 // retrieve all polls
 
-app.get('https://hidden-hollows-88799.herokuapp.com/api/poll/viewallpolls', function (req, res) {
+app.get('/api/poll/viewallpolls', function (req, res) {
 
 	db.collection('votingapprecords').find({}).toArray(function (err, data) {
 		if (err) throw err;else {
