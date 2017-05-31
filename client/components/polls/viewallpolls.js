@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { retrieveallpolls } from '../../actions/createpoll';
 import { Link } from 'react-router';
+import { browserHistory } from 'react-router';
 
 class ViewAllPolls extends React.Component{
 
@@ -26,12 +27,12 @@ class ViewAllPolls extends React.Component{
 		const listPollsTitles = (
 			polls.map( (poll, idx) => {
 				let myPollDetails = "/chart/" + poll.user.username + "/" + poll.polltitle;
+				let votingURI = "/poll/" + poll.user.username + "/" + poll.polltitle;
 
 				return (
 					<li key = {idx} className = "row-fluid">
 					 	<div className="panel-body clearfix">
 					    	<Link to = { myPollDetails }>{poll.polltitle}</Link>
-					    	
 					  	</div>
 					</li>				
 				)

@@ -82,7 +82,6 @@ app.get('/api/poll/:userId/:polltitle', function (req, res) {
 
 	db.collection('votingapprecords').find(query).toArray(function (err, data) {
 		if (err) throw err;else {
-			console.log("data: ", data);
 			res.status(200).json(data);
 		}
 	});

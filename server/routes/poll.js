@@ -77,7 +77,6 @@ app.get('/api/poll/:userId/:polltitle', (req, res) => {
 		if (err) throw err;
 
 		else{
-			console.log("data: ", data);
 			res.status(200).json(data);
 		}
 	})

@@ -1,5 +1,3 @@
-"use strict"
-
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
@@ -10,7 +8,7 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './reducers/rootReducer'; 
 import { AUTH_SUCCESS } from './actions/types';
-//import '../public/stylesheets/main.css';
+import '../public/stylesheets/main.css';
 
 const store = createStore(
 	rootReducer,

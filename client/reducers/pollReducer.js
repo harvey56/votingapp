@@ -1,4 +1,4 @@
-import { CREATE_NEW_POLL, RETRIEVE_POLLS, DELETE_POLL, UPDATE_POLL, RETRIEVE_POLL_TITLE } from '../actions/types';
+import { CREATE_NEW_POLL, RETRIEVE_POLLS, DELETE_POLL, UPDATE_POLL, RETRIEVE_POLL_TITLE, RETRIEVE_POLL } from '../actions/types';
 
 const defaultState = {
 	newPollSubmitted: false,
@@ -38,6 +38,11 @@ export default function(state = defaultState, action){
 			return Object.assign({}, state, {
 				polltitle: action.polltitle
 			})
+
+		case RETRIEVE_POLL :
+			return Object.assign({}, state, {
+				poll: action.poll
+			})			
 
 		default:
 			return state

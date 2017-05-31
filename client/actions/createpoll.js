@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { CREATE_NEW_POLL, RETRIEVE_POLLS, UPDATE_POLL, DELETE_POLL, RETRIEVE_POLL_TITLE } from './types';
+import { CREATE_NEW_POLL, RETRIEVE_POLLS, UPDATE_POLL, DELETE_POLL, RETRIEVE_POLL_TITLE, RETRIEVE_POLL } from './types';
 import React from 'react';
 
 // create new poll action
@@ -27,6 +27,15 @@ function retrieve(polls){
 	return{
 		type: RETRIEVE_POLLS,
 		polls
+	}
+}
+
+// retrieve poll data
+
+function retrieveDataForChart(poll){
+	return{
+		type: RETRIEVE_POLL,
+		poll
 	}
 }
 
@@ -80,8 +89,7 @@ export function getPollData(userId, polltitle){
 	return function(dispatch){
 		return axios.get(url)
 			.then( (res) => {
-				console.log("getPollData res: ", res);
-				dispatch(retrieve(res.data[0].pollOptions));
+				dispatch(retrieveDataForChart(res.data[0].pollOptions));
 				dispatch(retrievePollTitle(res.data[0].polltitle))
 			})
 			.catch( (err) => {
@@ -105,7 +113,7 @@ export function updatePollVotes(voteSelection, poll, userId, pollTitle){
 	voteSelection = voteSelection.slice(-1);
 	poll[voteSelection].vote += 1;
 	let url = '/api/poll/' + userId + "/" + pollTitle;
-	console.log(pollTitle);
+
 	return function(dispatch){
 		axios.post(url, poll)
 		.then ( (res) => {

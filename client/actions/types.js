@@ -8,3 +8,4 @@ export const RETRIEVE_POLLS = 'RETRIEVE_POLLS';
 export const RETRIEVE_POLL_TITLE = 'RETRIEVE_POLL_TITLE';
 export const UPDATE_POLL = 'UPDATE_POLL';
 export const DELETE_POLL = 'DELETE_POLL';
+export const RETRIEVE_POLL = 'RETRIEVE_POLL';

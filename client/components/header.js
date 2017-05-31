@@ -25,7 +25,8 @@ class Header extends React.Component{
 			<ul className = "nav navbar-nav navbar-right">
 				<li><Link to = "/viewallpolls">View all polls</Link></li>
 				<li><Link to =  {myPollsLink}>My polls</Link></li>
-				<li><Link to = "/addpoll">You are logged in as { this.userLogin ? this.userLogin.username : user.username }</Link></li>
+				<li><Link to = "/addpoll">Add a new poll</Link></li>
+				<li><Link to = "/">You are logged in as { this.userLogin ? this.userLogin.username : user.username }</Link></li>
 				<li><Link to = "/signout">Sign out</Link></li>
 			</ul>
 		)

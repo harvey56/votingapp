@@ -25,13 +25,11 @@ export function signupUser(props){
 		return axios.post('/authuser/signup', props)
 			.then( 
 				(res) => {
-					console.log("res action: ", res);
 					localStorage.setItem('user', JSON.stringify(props));
 					browserHistory.push('/addpoll'); 
 					dispatch(signupUserSuccess(props));
 				},
 				(err) => {
-					console.log("err action: ", err);
 					dispatch(signupUserFailure(err.message));
 					throw err;
 				}

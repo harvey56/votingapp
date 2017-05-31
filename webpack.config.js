@@ -10,11 +10,9 @@ let devtool;
 	if (process.env.NODE_ENV === 'production'){
 		plugins = [
 		    new ExtractTextPlugin({ filename: 'bundle.css', disable: false, allChunks: true }),
-		    //new webpack.optimize.OccurenceOrderPlugin(),
 		    new webpack.DefinePlugin({
 		      'process.env.NODE_ENV': JSON.stringify('production'),
 		    }),
-		    //new webpack.optimize.DedupePlugin(),
 		    new webpack.optimize.UglifyJsPlugin(),
 		];
 		entry = [
@@ -29,7 +27,6 @@ let devtool;
 	else {
 		plugins = [
 			new webpack.NoEmitOnErrorsPlugin(),
-			//new webpack.optimize.OccurenceOrderPlugin(),
 			new webpack.HotModuleReplacementPlugin()
 		];
 		entry = [
