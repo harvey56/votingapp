@@ -63,7 +63,6 @@ class NewPollForm extends React.Component {
 		polloption1 = [polloption1].map( function(option){ return {option: polloption1, vote: 0} } );
 		polloption2 = [polloption2].map( function(option){ return {option: polloption2, vote: 0} } );
 		options = options.filter(function(el){ return el.length > 0 });
-		console.log(options);
 		options = options.map( function(option){ return {option: option, vote: 0} } );
 		let pollOptions = [polloption1, polloption2].concat(options);
 

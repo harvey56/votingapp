@@ -40,7 +40,6 @@ class SignupForm extends React.Component{
 		e.preventDefault();
 		if (this.isValid()){
 			this.setState({errors: {}});
-			console.log("b4 user signing up: ", this.state);
 			this.props.signupUser(this.state).then ( 
 				(res) => { 
 					console.log("res signup: ", res);
@@ -48,9 +47,8 @@ class SignupForm extends React.Component{
 				(err) => { 
 					console.log("err signup: ", err);
 					this.setState({ errors: {data: err.response.data.errors} });
-				} //this.setState({errors: {"status": err.response.status, "data": err.response.data.errors}}) }
+				}
 			);
-			console.log("after user signing up: ", this.state);
 		}
 	}
 

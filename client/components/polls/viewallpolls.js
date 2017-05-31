@@ -33,6 +33,7 @@ class ViewAllPolls extends React.Component{
 					<li key = {idx} className = "row-fluid">
 					 	<div className="panel-body clearfix">
 					    	<Link to = { myPollDetails }>{poll.polltitle}</Link>
+					    	<span className="pull-right"><Link to = { votingURI }>Vote</Link></span>
 					  	</div>
 					</li>				
 				)

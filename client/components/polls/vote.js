@@ -35,8 +35,6 @@ class Poll extends React.Component {
 		let pollData = this.props.pollData || [];
 		let pollTitle = this.props.polltitle || [];
 
-		console.log(pollData, pollTitle);
-
 		const pollOptionsList = (
 			pollData.map( (option, optionId) => {
 
@@ -87,7 +85,7 @@ class Poll extends React.Component {
 
 function mapStateToProps(state){
 	return{
-		pollData: state.poll.polls,
+		pollData: state.poll.poll,
 		polltitle: state.poll.polltitle
 	}
 }

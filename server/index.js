@@ -32,14 +32,10 @@ else{
 app.use(express.static(path.join(__dirname, '../client')));
 
 if (NODE_ENV === 'production'){
-	app.get("/", (req, res) => {
-		res.sendFile(path.join(__dirname, "../client/index.html"));
-	});
+	app.use(fallback(path.join(__dirname, '../client/index.html')));
 }
 else{
-	app.get("/", (req, res) => {
-		res.sendFile(path.join(__dirname, "/index.html"));
-	});
+	app.use(fallback(path.join(__dirname, '/index.html')));
 }
 
 

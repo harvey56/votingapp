@@ -21,7 +21,6 @@ class MyChart extends React.Component{
 	}
 
   	render() {
-  		console.log("pollData: ", pollData);
 		let username = window.location.pathname.split("/")[2];
 		let polltitle = this.props.polltitle;  		
   		let pollData = this.props.pollData || [];
@@ -84,10 +83,6 @@ class MyChart extends React.Component{
 	          height={50}
 	          options={options}
 	        />
-	    </div>
-	    <div className = "col-md-3">
-	    	<br /><br />
-	    	<h4><Link to = {"poll/" + username + "/" + polltitle}>I want to vote now !</Link></h4>
 	    </div>
       </div>
     )
