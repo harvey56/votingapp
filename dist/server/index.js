@@ -61,19 +61,12 @@ if (NODE_ENV === 'development') {
 }
 
 app.use(_express2.default.static(_path2.default.join(__dirname, '../client')));
-app.use((0, _expressHistoryApiFallback2.default)(_path2.default.join(__dirname, '../client/index.html')));
-console.log("path: ", _path2.default.join(__dirname, '../client/index.html'));
 
-/*if (NODE_ENV === 'production'){
-	app.get("/", (req, res) => {
-		res.sendFile(path.join(__dirname, "../client/index.html"));
-	});
+if (NODE_ENV === 'production') {
+	app.use((0, _expressHistoryApiFallback2.default)(_path2.default.join(__dirname, '../client/index.html')));
+} else {
+	app.use((0, _expressHistoryApiFallback2.default)(_path2.default.join(__dirname, '/index.html')));
 }
-else{
-	app.get("/", (req, res) => {
-		res.sendFile(path.join(__dirname, "/index.html"));
-	});
-}*/
 
 app.listen(PORT, function (err) {
 	if (err) throw err;

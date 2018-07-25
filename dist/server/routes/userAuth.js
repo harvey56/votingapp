@@ -40,8 +40,8 @@ var router = module.exports = _express2.default.Router();
 
 router.post('/authuser/signup', function (req, res) {
 	var userProfile = req.body;
-	db.collection('votingapprecords').find({ "user.username": req.body.username }).toArray().then(function (data) {
-		if (data.length === 0) {
+	db.collection('votingapprecords').insertOne({ "user": req.body }).then(function (data) {
+		if (data) {
 			req.body.errors = {};
 			return res.status(200).json(userProfile);
 		} else {
@@ -57,10 +57,10 @@ router.post('/authuser/signup', function (req, res) {
 
 router.post('/authuser/login', function (req, res) {
 
-	var query = { "user.username": req.body.username };
+	var query = req.body.username;
 	var password = req.body.password;
 
-	db.collection('votingapprecords').find(query).toArray().then(function (data) {
+	db.collection('votingapprecords').find({ "user.email": query }).toArray().then(function (data) {
 		if (data[0].user.password !== password) {
 			return res.status(401).json({ errors: "Wrong password" });
 		} else {
