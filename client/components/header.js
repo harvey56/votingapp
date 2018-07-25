@@ -4,15 +4,15 @@ import { Link } from 'react-router';
 
 class Header extends React.Component{
 
-	componentWillMount(){
-		this.userLogin = JSON.parse(localStorage.getItem('user'));
-	}
+
+	//componentDidMount(){
+	//	this.userLogin = this.props.user; //JSON.parse(localStorage.getItem('user'));
+	//}
 
 	render(){
+		const { username } = this.props.user || {};
 		const { authenticated } = this.props;
-		const user = this.props.user || {};
-		const loggedUser = this.userLogin ? this.userLogin.username : "";
-		const myPollsLink = "/mypolls/" + loggedUser;
+		const myPollsLink = "/mypolls/" + username;
 
 		const guestHeader = (
 			<ul className = "nav navbar-nav navbar-right">
@@ -26,7 +26,7 @@ class Header extends React.Component{
 				<li><Link to = "/viewallpolls">View all polls</Link></li>
 				<li><Link to =  {myPollsLink}>My polls</Link></li>
 				<li><Link to = "/addpoll">Add a new poll</Link></li>
-				<li><Link to = "/">You are logged in as { this.userLogin ? this.userLogin.username : user.username }</Link></li>
+				<li><Link to = "/">You are logged in as { username }</Link></li>
 				<li><Link to = "/signout">Sign out</Link></li>
 			</ul>
 		)
@@ -46,5 +46,11 @@ class Header extends React.Component{
 	}
 };
 
+function mapStateToProps(state){
+	return {
+		user: state.auth.user,
+		authenticated: state.auth.authenticated
+	}
+}
 
-export default Header;
+export default connect(mapStateToProps, {})(Header);

@@ -12,6 +12,7 @@ class Dashboard extends React.Component {
 	constructor(props){
 		super(props);
 
+		this.state = {};
 		this.handlenewpollClick = this.handlenewpollClick.bind(this);
 		this.handleviewpollClick = this.handleviewpollClick.bind(this);
 		this.getUrlHost = this.getUrlHost.bind(this);
@@ -27,6 +28,10 @@ class Dashboard extends React.Component {
 
 	getUrlHost(){
 		url.get("host");
+	}
+
+	componentDidMount(){
+		this.setState({state: this.state});
 	}
 
 	render(){
@@ -53,9 +58,8 @@ class Dashboard extends React.Component {
 					<p className = "maintitle">Voting App</p>
 					<p className = "second-title">Create custom polls below</p>
 				</div>
-				{ 	authenticated ?
-
-						(this.props.newPollSubmitted ? 
+				{ console.log("authenticated: ", this.props.authenticated )}
+				{ 	authenticated && this.props.newPollSubmitted ? 
 
 						<div className = "col-md-6 col-md-offset-3">
 							<h2 className = "text-center">Congratulations! You just successfully submitted a new poll</h2><br />
@@ -65,15 +69,7 @@ class Dashboard extends React.Component {
 
 						: 
 
-						newPollForm)
-
-						:
-
-						<div className = "col-md-6 col-md-offset-3">
-							<h2 className = "text-center">You need to be signed in to submit a poll</h2><br />
-							<h2 className = "text-center">You will now be redirected to the login form</h2>
-							{setTimeout(() => browserHistory.push("/login"), 3000)}
-						</div> 
+						newPollForm
 				}
 
 			</div>

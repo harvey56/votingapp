@@ -42,7 +42,7 @@ class SignupForm extends React.Component{
 			this.setState({errors: {}});
 			this.props.signupUser(this.state).then ( 
 				(res) => { 
-					console.log("res signup: ", res);
+					console.log("signed up");
 				}, 
 				(err) => { 
 					console.log("err signup: ", err);

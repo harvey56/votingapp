@@ -22,10 +22,10 @@ let router = module.exports = express.Router();
 
 router.post('/authuser/signup', (req, res) => {
 	let userProfile = req.body;
-	db.collection('votingapprecords').find({ "user.username": req.body.username }).toArray()
+	db.collection('votingapprecords').insertOne({ "user": req.body })
 		.then( 
 			(data) => {
-				if(data.length === 0){
+				if(data){
 					req.body.errors = {};
 					return res.status(200).json(userProfile);
 				}				
@@ -47,10 +47,10 @@ router.post('/authuser/signup', (req, res) => {
 
 router.post('/authuser/login', (req, res) => {
 
-	let query = { "user.username" : req.body.username };
+	let query = req.body.username;
 	let password = req.body.password;
 	
-	db.collection('votingapprecords').find(query).toArray()
+	db.collection('votingapprecords').find({ "user.email": query }).toArray()
 	.then( (data) => {
 		if (data[0].user.password !== password){ 
 			return res.status(401).json({errors: "Wrong password"})
