@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { CREATE_NEW_POLL, RETRIEVE_POLLS, UPDATE_POLL, DELETE_POLL, RETRIEVE_POLL_TITLE, RETRIEVE_POLL } from './types';
+import { CREATE_NEW_POLL, RETRIEVE_POLLS, UPDATE_POLL, DELETE_POLL, RETRIEVE_POLL_TITLE, RETRIEVE_POLL, NEW_POLL_URL } from './types';
 import React from 'react';
 
 // create new poll action
 
 export function newPoll(pollData){
 	return{
-		type: CREATE_NEW_POLL,
+		type: NEW_POLL_URL,
 		pollData
 	}
 }
@@ -18,6 +18,22 @@ export function newPollUrl(props){
 	return function(dispatch){
 		dispatch(newPoll(props));
 		axios.post('/api/poll/newpoll', props)
+	}
+}
+
+// create new poll action
+
+export function newPollCreate(){
+	return{
+		type: CREATE_NEW_POLL
+	}
+}
+
+// action creator to create a new URL based on newly submitted poll
+
+export function newPollForm(props){
+	return function(dispatch){
+		dispatch(newPollCreate());
 	}
 }
 
@@ -48,6 +64,7 @@ export function retrievePolls(userId){
 	return function(dispatch){
 		axios.get(url)
 		.then( (res) => {
+			console.log("res.data: ", res.data);
 			return dispatch(retrieve(res.data))
 		})
 		.catch( (err) => {
@@ -141,10 +158,12 @@ export function deleteUserPoll(userId, polltitle, pollsList){
 	let url = '/api/poll/deletePoll/' + userId + "/" + polltitle;
 
 	return function(dispatch){
-		axios.post(url, pollsList)
-		.then( (res) => {
-			dispatch(deletePoll(polltitle))
-			return dispatch(retrieve(res.data));
-		});
+		return axios.post(url, pollsList)
+			.then( (res) => {
+				return dispatch(deletePoll(polltitle));
+			})
+			.then( (res) => {
+				return dispatch(retrieve(res.data));
+			});
 	}
 }

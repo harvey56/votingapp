@@ -4,10 +4,10 @@ import { Link } from 'react-router';
 
 class Header extends React.Component{
 
-
-	//componentDidMount(){
-	//	this.userLogin = this.props.user; //JSON.parse(localStorage.getItem('user'));
-	//}
+	constructor(props){
+		super(props);
+	}
+	
 
 	render(){
 		const { username } = this.props.user || {};
@@ -53,4 +53,4 @@ function mapStateToProps(state){
 	}
 }
 
-export default connect(mapStateToProps, {})(Header);
+export default connect(mapStateToProps, { })(Header);

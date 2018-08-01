@@ -7,6 +7,9 @@ class MyPollsList extends React.Component{
 
 	constructor(props){
 		super(props);
+		this.state = {
+			polls : []
+		}
 
 		this.handleDeletePoll = this.handleDeletePoll.bind(this);
 	}
@@ -17,7 +20,10 @@ class MyPollsList extends React.Component{
 	}
 
 	handleDeletePoll(polltitle){
-		this.props.deleteUserPoll(this.props.params.userId, polltitle, this.props.polls);
+		this.props.deleteUserPoll(this.props.params.userId, polltitle, this.props.polls)
+		.then( 
+				(res) => this.props.retrievePolls(this.props.params.userId)
+		);
 	}
 
 	render(){
@@ -55,6 +61,7 @@ class MyPollsList extends React.Component{
 
 function mapStateToProps(state){
 	return {
+		user: state.auth.user,
 		polls: state.poll.polls
 	}
 }

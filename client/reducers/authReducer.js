@@ -36,7 +36,7 @@ export default function (state = defaultState, action){
 			return Object.assign({}, state, {
 				authenticated: true,
 				signedin: true,
-				user: action.user,
+				user: JSON.parse(localStorage.getItem('user')),
 				error: {}
 			})
 

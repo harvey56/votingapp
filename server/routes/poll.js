@@ -99,7 +99,7 @@ app.post('/api/poll/:userId/:polltitle', (req, res) => {
 
 app.post('/api/poll/deletePoll/:userId/:polltitle', (req, res) => {
 	let query = { 'user.username': req.params.userId, 'polltitle': req.params.polltitle };
-
+	
 	db.collection('votingapprecords').deleteOne(query)
 	.then( () => {
 		db.collection('votingapprecords').find({ 'user.username': req.params.userId }).toArray( (err, data) => {

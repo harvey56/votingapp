@@ -3,7 +3,7 @@ import NewPollBtn from './newPollBtn';
 import ViewPollsBtn from './viewPollsBtn';
 import NewPollForm from './newPollForm';
 import { browserHistory } from 'react-router';
-import { newPollUrl } from '../../actions/createpoll';
+import { newPollUrl, newPollForm } from '../../actions/createpoll';
 import { connect } from 'react-redux';
 import url from 'url';
 
@@ -16,6 +16,7 @@ class Dashboard extends React.Component {
 		this.handlenewpollClick = this.handlenewpollClick.bind(this);
 		this.handleviewpollClick = this.handleviewpollClick.bind(this);
 		this.getUrlHost = this.getUrlHost.bind(this);
+		this.handleNewForm = this.handleNewForm.bind(this);
 	}
 
 	handlenewpollClick(){
@@ -30,8 +31,12 @@ class Dashboard extends React.Component {
 		url.get("host");
 	}
 
-	componentDidMount(){
-		this.setState({state: this.state});
+	componentWillMount(){
+		this.props.newPollForm();
+	}
+
+	handleNewForm(){
+		this.props.newPollForm();	
 	}
 
 	render(){
@@ -58,13 +63,19 @@ class Dashboard extends React.Component {
 					<p className = "maintitle">Voting App</p>
 					<p className = "second-title">Create custom polls below</p>
 				</div>
-				{ console.log("authenticated: ", this.props.authenticated )}
+
 				{ 	authenticated && this.props.newPollSubmitted ? 
 
-						<div className = "col-md-6 col-md-offset-3">
-							<h2 className = "text-center">Congratulations! You just successfully submitted a new poll</h2><br />
-							<h3 className = "text-center">Your poll is accessible at the following address: </h3><br />
-							<h3 className = "text-center"><em><a href = { "poll/" + pollData.user.username + "/" + pollData.polltitle }>{window.location.host + "/poll/" + pollData.user.username + "/" + pollData.polltitle}</a></em></h3>
+						<div className = "row">
+							<div className = "col-md-6 col-md-offset-3">
+								<h2 className = "text-center">Congratulations! You just successfully submitted a new poll</h2><br />
+								<h3 className = "text-center">Your poll is accessible at the following address: </h3><br />
+								<h3 className = "text-center"><em><a href = { "poll/" + pollData.user.username + "/" + pollData.polltitle }>{window.location.host + "/poll/" + pollData.user.username + "/" + pollData.polltitle}</a></em></h3>
+								<br />
+								<div className = "text-center">
+									<button type = "button" className = "btn btn-info" onClick = { this.handleNewForm }>Click to create a new poll</button>
+								</div>
+							</div>
 						</div>  
 
 						: 
@@ -86,4 +97,4 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps, {newPollUrl})(Dashboard);
+export default connect(mapStateToProps, {newPollUrl, newPollForm})(Dashboard);
